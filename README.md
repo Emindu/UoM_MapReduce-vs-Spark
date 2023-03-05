@@ -5,7 +5,7 @@
 ssh -i ~/vockey.pem <>.amazonaws.com
 ```
 
-![img.png](resources/ssh_connection_done.png)
+![img.png](Resources/ssh_connection_done.png)
 
 
 
