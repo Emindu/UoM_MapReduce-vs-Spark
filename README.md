@@ -48,7 +48,7 @@ ssh -i ~/vockey.pem <>.amazonaws.com
 ### hive sql table create command to create table for matching above data
 
 ```
-CREATE EXTERNAL TABLE IF NOT EXISTS flight_data(
+CREATE EXTERNAL TABLE IF NOT EXISTS delayedFlights(
   Year int, 
   Month int,
   DayofMonth int,
@@ -81,6 +81,61 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flight_data(
 )
 ROW FORMAT DELIMITED 
 FIELDS TERMINATED BY ',' 
-LOCATION '/user/tables/flight_data';
+LOCATION '/user/tables/delayedFlights';
+
+```
+
+### loading data
+```
+LOAD DATA INPATH '<s3 bucket link>' OVERWRITE INTO TABLE delayedFlights;
+```
+
+
+### The airlines market has been faced losses due to the flight delay and there are many reasons for delaying a flight. In this Analysis, you need to analyse the various delay happens in airlines per year and run the queries as follows.
+1. Year wise carrier delay from 2003-2010
+```
+SELECT Year As Year, SUM(CarrierDelay) As TotalCarrierDelay
+FROM delayedFlights
+WHERE Year >= 2003 AND Year <= 2010
+GROUP BY Year
+ORDER BY Year;
+```
+
+
+
+
+2. Year wise NAS delay from 2003-2010
+```
+SELECT Year As Year, SUM(NASDelay) AS TotalNASDelay
+FROM delayedFlights
+WHERE Year >= 2003 AND Year <= 2010
+GROUP BY Year
+ORDER BY Year;
+```
+3. Year wise Weather delay from 2003-2010
+```
+SELECT Year As Year, SUM(WeatherDelay) AS TotalWeatherDelay
+FROM delayedFlights
+WHERE Year >= 2003 AND Year <= 2010
+GROUP BY Year
+ORDER BY Year;
+```
+4. Year wise late aircraft delay from 2003-2010
+
+```
+SELECT Year As Year, SUM(LateAircraftDelay) AS LateAircraftDelay
+FROM delayedFlights
+WHERE Year >= 2003 AND Year <= 2010
+GROUP BY Year
+ORDER BY Year;
+```
+
+5. Year wise security delay from 2003-2010
+```
+SELECT Year As Year, SUM(SecurityDelay) AS SecurityDelay
+FROM delayedFlights
+WHERE Year >= 2003 AND Year <= 2010
+GROUP BY Year
+ORDER BY Year;
 
 ```
