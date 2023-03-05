@@ -82,7 +82,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS delayedFlights(
 )
 ROW FORMAT DELIMITED 
 FIELDS TERMINATED BY ',' 
-LOCATION '/user/tables/flight_data';
+LOCATION '/user/tables/delayedFlights';
 
 ```
 
@@ -90,6 +90,7 @@ LOCATION '/user/tables/flight_data';
 ```
 LOAD DATA INPATH '<s3 bucket link>' OVERWRITE INTO TABLE delayedFlights;
 ```
+
 
 #### now we can run sql commands such as,
 ``` select * from delayedFlights ```
@@ -104,8 +105,6 @@ WHERE Year BETWEEN 2003 AND  2010
 GROUP BY Year
 ORDER BY Year;
 ```
-
-
 
 
 2. Year wise NAS delay from 2003-2010
