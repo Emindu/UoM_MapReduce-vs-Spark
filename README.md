@@ -161,4 +161,153 @@ ORDER BY Year;
 ```
 
 #### results
-![img.png](Resources/hadoop_security_1.png)
+![img.png](Resources/hadoop_security_1.png) 
+
+
+
+## With Spark(pyspark)
+
+for that we have to create new emr cluster with spark application installed.
+
+after connecting to the cluster with ssh connection we can use ``` pyspark ``` command to open pyshark shell
+
+used commands in pyspark
+
+importing needed libaries
+```
+from pyspark.sql import SparkSession
+import time
+```
+
+importing data
+
+```
+# Create a SparkSession object
+spark = SparkSession.builder.appName("DelayedFlights").getOrCreate()
+
+# Read in the flight data from a CSV file
+delayedFlights = spark.read.format("csv").option("header", "true").load("s3://coursework/input/DelayedFlights-updated.csv")
+
+
+delayedFlights.createOrReplaceTempView("delayedFlights")
+
+```
+#### sample command
+````
+spark.sql("select * from delayedFlights where year= 2008").show();
+````
+
+
+ ### Running time for queries
+
+
+#### Carrier- Delay 
+```
+
+
+s_t = time.time()
+
+spark.sql("""
+	SELECT Year As Year, SUM(CarrierDelay) As TotalCarrierDelay
+	FROM DelayedFlights
+	WHERE Year between 2003 AND  2010
+	GROUP BY Year
+	ORDER BY Year""").show()
+
+e_t = time.time()
+run_time = e_t - s_t
+print("Time taken: ", run_time, " seconds")
+```
+
+#### results
+![img.png](Resources/spark_carrier_1.png) 
+
+
+#### NAS  Delay 
+
+
+```
+s_t = time.time()
+
+spark.sql("""
+	SELECT Year As Year, SUM(NASDelay) As TotalNASDelay
+	FROM DelayedFlights
+	WHERE Year between 2003 AND  2010
+	GROUP BY Year
+	ORDER BY Year""").show()
+
+e_t = time.time()
+run_time = e_t - s_t
+print("Time taken: ", run_time, " seconds")
+
+```
+
+#### results
+![img.png](Resources/spark_nas_1.png) 
+
+
+#### Weather- Delay 
+
+```
+s_t = time.time()
+
+spark.sql("""
+	SELECT Year As Year, SUM(WeatherDelay) As TotalWeatherDelay
+	FROM DelayedFlights
+	WHERE Year between 2003 AND  2010
+	GROUP BY Year
+	ORDER BY Year""").show()
+
+e_t = time.time()
+run_time = e_t - s_t
+print("Time taken: ", run_time, " seconds")
+```
+
+#### results
+![img.png](Resources/spark_weather_1.png) 
+
+#### LateAircraft- Delay
+
+```
+s_t = time.time()
+
+spark.sql("""
+	SELECT Year As Year, SUM(LateAircraftDelay) As TotalLateAircraftDelay
+	FROM DelayedFlights
+	WHERE Year between 2003 AND  2010
+	GROUP BY Year
+	ORDER BY Year""").show()
+
+e_t = time.time()
+run_time = e_t - s_t
+print("Time taken: ", run_time, " seconds")
+```
+
+
+#### results
+![img.png](Resources/spark_aircraflt_1.png) 
+
+#### Security-Delay
+
+```
+s_t = time.time()
+
+spark.sql("""
+	SELECT Year As Year, SUM(SecurityDelay) As TotalSecurityDelay
+	FROM DelayedFlights
+	WHERE Year between 2003 AND  2010
+	GROUP BY Year
+	ORDER BY Year""").show()
+
+e_t = time.time()
+run_time = e_t - s_t
+print("Time taken: ", run_time, " seconds")
+```
+#### results
+![img.png](Resources/spark_security_1.png) 
+
+
+
+## Comparison
+
+
