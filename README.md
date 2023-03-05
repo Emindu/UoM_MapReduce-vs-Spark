@@ -310,4 +310,9 @@ print("Time taken: ", run_time, " seconds")
 
 ## Comparison
 
+![img.png](Resources/results.png) 
+
+
+https://docs.google.com/spreadsheets/d/1uSYmW1EO-ACFOpa3H230aKwIrlT49ulxmC1UGAx51Lw/edit#gid=0
+
 
