@@ -8,7 +8,7 @@ ssh -i ~/vockey.pem <>.amazonaws.com
 ![img.png](Resources/ssh_connection_done.png)
 
 
-Attribute names and data type of input csv
+### Attribute names and data type of input csv
 
 
 |     Column          | Non-Null Count | Dtype   |
@@ -45,3 +45,42 @@ Attribute names and data type of input csv
 | LateAircraftDelay   | 760            | float64 |
 
 
+### hive sql table create command to create table for matching above data
+
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS flight_data(
+  Year int, 
+  Month int,
+  DayofMonth int,
+  DayOfWeek int,
+  DepTime int,
+  CRSDepTime int,
+  ArrTime int,
+  CRSArrTime int,
+  UniqueCarrier string,
+  FlightNum int,
+  TailNum string,
+  ActualElapsedTime int,
+  CRSElapsedTime int,
+  AirTime int,
+  ArrDelay int,
+  DepDelay int,
+  Origin string,
+  Dest string,
+  Distance int,
+  TaxiIn int,
+  TaxiOut int,
+  Cancelled string,
+  CancellationCode string,
+  Diverted string,
+  CarrierDelay int,
+  WeatherDelay int,
+  NASDelay int,
+  SecurityDelay int,
+  LateAircraftDelay int
+)
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+LOCATION '/user/tables/flight_data';
+
+```
