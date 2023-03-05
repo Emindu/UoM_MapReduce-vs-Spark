@@ -108,6 +108,9 @@ GROUP BY Year
 ORDER BY Year;
 ```
 
+#### results
+![img.png](Resources/hadoop_carrier_1.png)
+
 
 2. Year wise NAS delay from 2003-2010
 ```
@@ -117,6 +120,10 @@ WHERE Year BETWEEN 2003 AND 2010
 GROUP BY Year
 ORDER BY Year;
 ```
+
+#### results
+![img.png](Resources/hadoop_nas_1.png)
+
 3. Year wise Weather delay from 2003-2010
 ```
 SELECT Year As Year, SUM(WeatherDelay) AS TotalWeatherDelay
@@ -125,6 +132,11 @@ WHERE Year BETWEEN 2003 AND 2010
 GROUP BY Year
 ORDER BY Year;
 ```
+
+#### results
+![img.png](Resources/hadoop_weather_1.png)
+
+
 4. Year wise late aircraft delay from 2003-2010
 
 ```
@@ -135,6 +147,9 @@ GROUP BY Year
 ORDER BY Year;
 ```
 
+#### results
+![img.png](Resources/hadoop_aircraflt_1.png)
+
 5. Year wise security delay from 2003-2010
 ```
 SELECT Year As Year, SUM(SecurityDelay) AS SecurityDelay
@@ -144,3 +159,6 @@ GROUP BY Year
 ORDER BY Year;
 
 ```
+
+#### results
+![img.png](Resources/hadoop_security_1.png)
