@@ -4,6 +4,8 @@
 ```
 ssh -i ~/vockey.pem <>.amazonaws.com
 ```
-![Alt text](/resources/ssh_connection_done.png?raw=true "Optional Title")
+
+![img.png](resources/ssh_connection_done.png)
+
 
 
