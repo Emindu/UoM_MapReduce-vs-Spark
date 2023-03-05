@@ -49,6 +49,7 @@ ssh -i ~/vockey.pem <>.amazonaws.com
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS delayedFlights(
+  Counter int,
   Year int, 
   Month int,
   DayofMonth int,
@@ -81,7 +82,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS delayedFlights(
 )
 ROW FORMAT DELIMITED 
 FIELDS TERMINATED BY ',' 
-LOCATION '/user/tables/delayedFlights';
+LOCATION '/user/tables/flight_data';
 
 ```
 
@@ -90,12 +91,15 @@ LOCATION '/user/tables/delayedFlights';
 LOAD DATA INPATH '<s3 bucket link>' OVERWRITE INTO TABLE delayedFlights;
 ```
 
+#### now we can run sql commands such as,
+``` select * from delayedFlights ```
+
 
 ### The airlines market has been faced losses due to the flight delay and there are many reasons for delaying a flight. In this Analysis, you need to analyse the various delay happens in airlines per year and run the queries as follows.
 1. Year wise carrier delay from 2003-2010
 ```
 SELECT Year As Year, SUM(CarrierDelay) As TotalCarrierDelay
-FROM delayedFlights
+FROM delayedflights
 WHERE Year BETWEEN 2003 AND  2010
 GROUP BY Year
 ORDER BY Year;
