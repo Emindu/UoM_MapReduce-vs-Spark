@@ -96,7 +96,7 @@ LOAD DATA INPATH '<s3 bucket link>' OVERWRITE INTO TABLE delayedFlights;
 ```
 SELECT Year As Year, SUM(CarrierDelay) As TotalCarrierDelay
 FROM delayedFlights
-WHERE Year >= 2003 AND Year <= 2010
+WHERE Year BETWEEN 2003 AND  2010
 GROUP BY Year
 ORDER BY Year;
 ```
@@ -108,7 +108,7 @@ ORDER BY Year;
 ```
 SELECT Year As Year, SUM(NASDelay) AS TotalNASDelay
 FROM delayedFlights
-WHERE Year >= 2003 AND Year <= 2010
+WHERE Year BETWEEN 2003 AND 2010
 GROUP BY Year
 ORDER BY Year;
 ```
@@ -116,7 +116,7 @@ ORDER BY Year;
 ```
 SELECT Year As Year, SUM(WeatherDelay) AS TotalWeatherDelay
 FROM delayedFlights
-WHERE Year >= 2003 AND Year <= 2010
+WHERE Year BETWEEN 2003 AND 2010
 GROUP BY Year
 ORDER BY Year;
 ```
@@ -125,7 +125,7 @@ ORDER BY Year;
 ```
 SELECT Year As Year, SUM(LateAircraftDelay) AS LateAircraftDelay
 FROM delayedFlights
-WHERE Year >= 2003 AND Year <= 2010
+WHERE Year BETWEEN 2003 AND  2010
 GROUP BY Year
 ORDER BY Year;
 ```
@@ -134,7 +134,7 @@ ORDER BY Year;
 ```
 SELECT Year As Year, SUM(SecurityDelay) AS SecurityDelay
 FROM delayedFlights
-WHERE Year >= 2003 AND Year <= 2010
+WHERE Year BETWEEN 2003 AND  2010
 GROUP BY Year
 ORDER BY Year;
 
