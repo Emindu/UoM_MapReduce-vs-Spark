@@ -96,7 +96,9 @@ LOAD DATA INPATH '<s3 bucket link>' OVERWRITE INTO TABLE delayedFlights;
 ``` select * from delayedFlights ```
 
 
-### The airlines market has been faced losses due to the flight delay and there are many reasons for delaying a flight. In this Analysis, you need to analyse the various delay happens in airlines per year and run the queries as follows.
+#### The airlines market has been faced losses due to the flight delay and there are many reasons for delaying a flight. In this Analysis, you need to analyse the various delay happens in airlines per year and run the queries as follows.
+
+
 1. Year wise carrier delay from 2003-2010
 ```
 SELECT Year As Year, SUM(CarrierDelay) As TotalCarrierDelay
